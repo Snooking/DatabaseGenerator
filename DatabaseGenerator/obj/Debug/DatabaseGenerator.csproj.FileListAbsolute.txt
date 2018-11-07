@@ -1,0 +1,7 @@
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\bin\Debug\DatabaseGenerator.exe.config
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\bin\Debug\DatabaseGenerator.exe
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\bin\Debug\DatabaseGenerator.pdb
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\obj\Debug\DatabaseGenerator.csprojAssemblyReference.cache
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\obj\Debug\DatabaseGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\obj\Debug\DatabaseGenerator.exe
+C:\Users\Snooking\Source\Repos\DatabaseGenerator\DatabaseGenerator\obj\Debug\DatabaseGenerator.pdb
