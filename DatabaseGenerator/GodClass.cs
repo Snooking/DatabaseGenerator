@@ -16,23 +16,13 @@ namespace DatabaseGenerator
 
         private const string MechanicsQuestion = "How many mechanics do you want?";
         private const string MachinesQuestion = "How many machines do you want?";
-        private const string ModernizationsQuestion = "How many modernizations do you want?";
-        private const string RepairsQuestion = "How many repairs do you want?";
         private const string InformationsQuestion = "How many informations do you want?";
-        private const string MachinesParametersQuestion = "How many machines parameters do you want?";
-        private const string ParticipationsQuestion = "How many participations do you want?";
-
-        private string _inserts;
 
         public void AskForAll()
         {
             _mechanicsNumber = AskForOne(MechanicsQuestion);
             _machinesNumber = AskForOne(MachinesQuestion);
-            _modernizationsNumber = AskForOne(ModernizationsQuestion);
-            _repairsNumber = AskForOne(RepairsQuestion);
             _informationsNumber = AskForOne(InformationsQuestion);
-            _machinesParametersNumber = AskForOne(MachinesParametersQuestion);
-            _participationsNumber = AskForOne(ParticipationsQuestion);
         }
 
         private int AskForOne(string question)
@@ -48,15 +38,31 @@ namespace DatabaseGenerator
 
         public void Generate()
         {
+            var machinesGenerator = new MachinesGenerator(_machinesNumber);
+            var mechanicsGenerator = new MechanicsGenerator(_machinesNumber);
+            var informationsGenerator = new InformationsGenerator(_informationsNumber, machinesGenerator.Ids);
+            _repairsNumber = new Random().Next() % _informationsNumber;
+            _modernizationsNumber = _informationsNumber - _repairsNumber;
+            _machinesParametersNumber = _machinesNumber;
+            _participationsNumber = _informationsNumber;
             var generators = new List<GeneratorBase>
             {
-                new MachinesGenerator(_machinesNumber)
+                machinesGenerator,
+                mechanicsGenerator,
+                informationsGenerator,
+                new ModernizationsGenerator(_modernizationsNumber, _repairsNumber),
+                new RepairsGenerator(_repairsNumber),
+                new MachinesParametersGenerator(_machinesParametersNumber, machinesGenerator.Ids),
+                new ParticipationsGenerator(_participationsNumber, _informationsNumber, mechanicsGenerator.Pesels)
             };
+
+            var fileWriter = new FileWriter();
+
             foreach (var generator in generators)
             {
-                _inserts += generator.Generate();
+                var valueToWrite = generator.Generate();
+                fileWriter.WriteToFile(generator.Path, valueToWrite);
             }
-            var fileWriter = new FileWriter(_inserts);
         }
     }
 }

@@ -43,12 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AirlinesGenerator.cs" />
+    <Compile Include="FileWriter.cs" />
+    <Compile Include="Generators\GeneratorBase.cs" />
+    <Compile Include="Generators\InformationsGenerator.cs" />
+    <Compile Include="Generators\MachinesGenerator.cs" />
+    <Compile Include="Generators\MachinesParametersGenerator.cs" />
+    <Compile Include="Generators\MechanicsGenerator.cs" />
+    <Compile Include="Generators\ModernizationsGenerator.cs" />
+    <Compile Include="Generators\ParticipationsGenerator.cs" />
+    <Compile Include="Generators\RepairsGenerator.cs" />
+    <Compile Include="GodClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

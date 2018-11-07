@@ -4,13 +4,11 @@ namespace DatabaseGenerator
 {
     internal class FileWriter
     {
-        private const string Path = "";
-
-        public FileWriter(string insertions)
+        public void WriteToFile(string path, string value)
         {
-            using (StreamWriter writer = new StreamWriter(Path, true))
+            using (StreamWriter writer = new StreamWriter(path, true))
             {
-                writer.Write(insertions);
+                writer.Write(value);
             }
         }
     }
