@@ -1,4 +1,5 @@
 ﻿using DatabaseGenerator.Generators;
+using DatabaseGenerator.Generators.DataWarehouse;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace DatabaseGenerator
         private int _informationsNumber;
         private int _machinesParametersNumber;
         private int _participationsNumber;
+        private int _datesNumber;
 
         private const string MechanicsQuestion = "How many mechanics do you want?";
         private const string MachinesQuestion = "How many machines do you want?";
@@ -38,9 +40,11 @@ namespace DatabaseGenerator
 
         public void Generate()
         {
-            var machinesGenerator = new MachinesGenerator(_machinesNumber);
-            var mechanicsGenerator = new MechanicsGenerator(_machinesNumber);
-            var informationsGenerator = new InformationsGenerator(_informationsNumber, machinesGenerator.Ids);
+            var early = false;
+            _datesNumber = early ? 3500 : 3000;
+            var machinesGenerator = new PlaneGenerator(_machinesNumber, early);
+            var mechanicsGenerator = new MechanicGenerator(_mechanicsNumber, early ? 0 : 150);
+            var informationsGenerator = new PlaneRepairGenerator(_informationsNumber, _machinesNumber, _datesNumber, _mechanicsNumber, early);
             _repairsNumber = new Random().Next() % _informationsNumber;
             _modernizationsNumber = _informationsNumber - _repairsNumber;
             _machinesParametersNumber = _machinesNumber;
@@ -50,10 +54,9 @@ namespace DatabaseGenerator
                 machinesGenerator,
                 mechanicsGenerator,
                 informationsGenerator,
-                new ModernizationsGenerator(_modernizationsNumber, _repairsNumber),
-                new RepairsGenerator(_repairsNumber),
-                new MachinesParametersGenerator(_machinesParametersNumber, machinesGenerator.Ids),
-                new ParticipationsGenerator(_participationsNumber, _informationsNumber, mechanicsGenerator.Pesels)
+                new DateGenerator(_datesNumber, new DateTime(2010, 8, 2)),
+                new MechanicsMoneyGenerator(_mechanicsNumber + 225, early ? 0 : 150, early),
+                new AirBaseGenerator(10)
             };
 
             var fileWriter = new FileWriter();

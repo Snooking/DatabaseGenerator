@@ -44,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileWriter.cs" />
+    <Compile Include="Generators\DataWarehouse\AirBaseGenerator.cs" />
+    <Compile Include="Generators\DataWarehouse\MechanicsMoneyGenerator.cs" />
+    <Compile Include="Generators\DataWarehouse\DateGenerator.cs" />
+    <Compile Include="Generators\DataWarehouse\PlaneRepairGenerator.cs" />
+    <Compile Include="Generators\DataWarehouse\MechanicGenerator.cs" />
+    <Compile Include="Generators\DataWarehouse\PlaneGenerator.cs" />
     <Compile Include="Generators\GeneratorBase.cs" />
     <Compile Include="Generators\InformationsGenerator.cs" />
     <Compile Include="Generators\MachinesGenerator.cs" />
